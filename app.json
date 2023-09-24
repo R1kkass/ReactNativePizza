@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Bobo Pizza",
+    "slug": "ReactNativePizza",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "red",
+    "splash": {
+      "image": "./assets/Logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#fff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/Logo.png",
+        "backgroundColor": "#fff"
+      },
+      "package": "com.rikkas.BoboPizza"
+    },
+    "web": {
+      "favicon": "./assets/Logo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "15509145-d8a4-4a3f-ab1b-47a8c9701156"
+      }
+    }
+  }
+}
