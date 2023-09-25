@@ -15,7 +15,7 @@ const TasteList = () => {
             <AddTasteText>Добавить по вкусу</AddTasteText>
             <TasteView>
                 {taste?.taste.map((tas) => (
-                    <TasteUnit tas={tas} />
+                    <TasteUnit key={tas._id} tas={tas} />
                 ))}
             </TasteView>
         </TasteContainer>

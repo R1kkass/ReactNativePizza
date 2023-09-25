@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Main from "./Main/Main";
 import Router from "./product";
+import UserRouter from "./user";
 
 const Tab = createBottomTabNavigator();
 
@@ -45,7 +46,7 @@ const Routing = () => {
             <Tab.Screen
                 name="Пользователь"
                 options={{ headerShown: false }}
-                component={Main}
+                component={UserRouter}
             />
         </Tab.Navigator>
     );
