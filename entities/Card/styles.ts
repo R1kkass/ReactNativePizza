@@ -17,12 +17,11 @@ export const CardImage = styled.Image`
 
 export const TextName = styled.Text`
     font-size: 18px;
-    font-family: 'Comfortaa';
     font-weight: 700;
 `
 
 export const TextIngredients = styled.Text`
-    font-size: 13px;
+    font-size: 10px;
     font-weight: 100;
     min-height: 65px;
     width: ${Dimensions.get('window').width - Dimensions.get('window').width / 3}px;

@@ -1,4 +1,4 @@
-export interface IPizzas{
+export interface IPizzas {
     name: string;
     _id: string;
     image: string;
@@ -10,5 +10,16 @@ export interface IPizzas{
 }
 
 export interface IDataPizza {
-    pizzas: IPizzas[]
+    pizzas: IPizzas[];
+}
+
+export interface ITaste {
+    _id: string;
+    name: string;
+    price: string;
+    image: string;
+}
+
+export type IData<D, K> = {
+    [k: string]: D[]
 }
