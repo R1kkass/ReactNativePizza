@@ -21,9 +21,12 @@ export const tasteSlice = createSlice({
                 return e._id !== actions.payload;
             });
         },
+        initTaste(state) {
+            state.taste = []
+        }
     },
 });
 
 export default tasteSlice.reducer;
 
-export const { addTaste, deleteTaste } = tasteSlice.actions;
+export const { addTaste, deleteTaste, initTaste } = tasteSlice.actions;

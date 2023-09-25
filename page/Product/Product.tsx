@@ -12,7 +12,8 @@ import Button from "../../shared/Button/Button";
 import TasteList from "../../entities/TasteList/TasteList";
 import Size from "../../entities/Size/Size";
 import Taste from "../../entities/Taste/Taste";
-import { useAppSelector } from "../../app/store/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/store/hooks";
+import { initTaste } from "../../app/store/TasteSlice";
 
 const Product: FC<IProduct> = ({ route }) => {
     const { image, name, price, ingredients, category, weight } = route.params;
@@ -20,7 +21,9 @@ const Product: FC<IProduct> = ({ route }) => {
     const [proPrice, setProPrice] = useState(Number(price));
     const [size, setSize] = useState("Средняя");
     const [type, setType] = useState("Традиционное");
+    let priceTaste = 0;
 
+    const dispatch = useAppDispatch();
     const taste = useAppSelector((state) => state.tasteReducer.taste);
 
     function productPrice(price: number, name: string) {
@@ -29,13 +32,14 @@ const Product: FC<IProduct> = ({ route }) => {
     }
 
     useEffect(() => {
-        console.log(taste);
+        dispatch(initTaste());
+    }, []);
 
-        let a = taste?.reduce((acc, e) => {
+    useEffect(() => {
+        priceTaste = taste?.reduce((acc, e) => {
             return Number(e.price) + acc;
-        }, 0);
-        setProPrice(price + a);
-        console.log(a);
+        }, 0) + proPrice - priceTaste;
+        setProPrice(priceTaste);
     }, [taste]);
 
     return (

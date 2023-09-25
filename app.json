@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rikkas.BoboPizza"
     },
     "android": {
       "adaptiveIcon": {
