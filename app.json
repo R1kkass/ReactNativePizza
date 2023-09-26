@@ -5,11 +5,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "red",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/Logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#fff"
+      "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -21,24 +21,23 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/Logo.png",
-        "backgroundColor": "#fff"
+        "backgroundColor": "#ffffff"
       },
       "package": "com.rikkas.BoboPizza"
     },
     "web": {
       "favicon": "./assets/Logo.png"
     },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/37fd29de-6601-4c4f-9a5a-cfd6e03f2b49"
-    },
-    "owner": "rikkas",
     "extra": {
       "eas": {
         "projectId": "37fd29de-6601-4c4f-9a5a-cfd6e03f2b49"
       }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/37fd29de-6601-4c4f-9a5a-cfd6e03f2b49"
     }
   }
 }
