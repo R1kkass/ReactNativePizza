@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { pizzaApi } from "../services/PizzaService";
 import tasteReducer from "./TasteSlice";
+import storageeReducer from "./StorageSlice"
 
 const rootReducer = combineReducers({
     [pizzaApi.reducerPath]: pizzaApi.reducer,
     tasteReducer,
+    storageeReducer
 });
 
 export const setupStore = () => {

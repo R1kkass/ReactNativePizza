@@ -23,3 +23,11 @@ export interface ITaste {
 export type IData<D, K> = {
     [k: string]: D[]
 }
+
+export interface IBasket{
+    _id: string;
+    count: number;
+    price: string;
+    productId: string;
+    product: IPizzas[];
+}

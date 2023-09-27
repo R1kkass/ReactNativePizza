@@ -2,9 +2,8 @@ import styled from "styled-components/native";
 
 export const ProductScroll = styled.ScrollView`
     background: white;
-    padding-left: 16px;
-    padding-right: 16px;
     padding-bottom: 10px;
+    
 `
 
 export const NameProduct = styled.Text`
@@ -28,4 +27,9 @@ export const TasteText = styled.Text`
 
 export const WeightText = styled.Text`
     opacity: 0.5;
+`
+
+export const ContainerView = styled.View`
+padding-left: 16px;
+padding-right: 16px;
 `

@@ -11,11 +11,15 @@ import {
 import { AuthApi } from "../../app/api/auth";
 import * as SecureStore from "expo-secure-store";
 import { validate } from "./validate";
+import { appJwtDecode } from "../../app/jwtDecode";
+import { useAppDispatch } from "../../app/store/hooks";
+import { addBasketId, addToken } from "../../app/store/StorageSlice";
 
 const Auth = ({ navigation }: any) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const dispatch = useAppDispatch()
 
     async function login() {
         if(!validate(email, password)){
@@ -23,6 +27,9 @@ const Auth = ({ navigation }: any) => {
             .then(async (e) => {
                 await SecureStore.setItemAsync("token", String(e));
                 setError('')
+                dispatch(addToken(e))
+                dispatch(addBasketId(appJwtDecode(e).basketId))
+                await SecureStore.setItemAsync("basketId", String(appJwtDecode(String(e)).basketId));
                 navigation.navigate('Главная')
             })
             .catch((e) => {
@@ -36,10 +43,10 @@ const Auth = ({ navigation }: any) => {
     return (
         <AuthView>
             <AuthText>Вход</AuthText>
-            <AuthInput inputMode="email" onChangeText={(e) => setEmail(e)} placeholder="E-Mail" />
+            <AuthInput inputMode="email" onChangeText={(e:string) => setEmail(e)} placeholder="E-Mail" />
             <AuthInput
                 secureTextEntry={true}
-                onChangeText={(e) => setPassword(e)}
+                onChangeText={(e: string) => setPassword(e)}
                 placeholder="Пароль"
             />
             <AuthButton onPress={login}>

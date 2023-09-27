@@ -3,6 +3,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Main from "./Main/Main";
 import Router from "./product";
 import UserRouter from "./user";
+import Basket from "./Basket/Basket";
 
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +16,7 @@ const Routing = () => {
                     let rn = route.name;
 
                     if (rn === "Главная") {
-                        iconName = focused ? "home" : "home-outline";
+                        iconName = focused ? "pizza" : "pizza-outline";
                     } else if (rn === "Корзина") {
                         iconName = focused ? "basket" : "basket-outline";
                     } else if (rn === "Избранное") {
@@ -42,7 +43,11 @@ const Routing = () => {
                 options={{ headerShown: false }}
                 component={Router}
             />
-            <Tab.Screen name="Корзина" component={Main} />
+            <Tab.Screen
+                options={{ headerShown: false }}
+                name="Корзина"
+                component={Basket}
+            />
             <Tab.Screen
                 name="Пользователь"
                 options={{ headerShown: false }}
@@ -52,4 +57,4 @@ const Routing = () => {
     );
 };
 
-export default Routing
+export default Routing;

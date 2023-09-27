@@ -10,3 +10,8 @@ export const PersonalView=styled.ScrollView`
 export const PersolText = styled.Text`
     font-size: 26px;
 `
+
+export const PersonalMainView = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+`

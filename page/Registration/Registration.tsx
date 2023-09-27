@@ -10,12 +10,16 @@ import {
 import { validate } from "./validate";
 import { AuthApi } from "../../app/api/auth";
 import * as SecureStore from "expo-secure-store";
+import { addBasketId, addToken } from "../../app/store/StorageSlice";
+import { appJwtDecode } from "../../app/jwtDecode";
+import { useAppDispatch } from "../../app/store/hooks";
 
-const Registration = ({navigation}: any) => {
+const Registration = ({ navigation }: any) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
     const [error, setError] = useState("");
+    const dispatch = useAppDispatch();
 
     function registration() {
         if (!validate(email, password, repeatPassword)) {
@@ -28,6 +32,8 @@ const Registration = ({navigation}: any) => {
                 .then(async (e) => {
                     setError("");
                     await SecureStore.setItemAsync("token", String(e));
+                    dispatch(addToken(e));
+                    dispatch(addBasketId(appJwtDecode(e).basketId));
                     navigation.navigate("Главная");
                 })
                 .catch((e) => {

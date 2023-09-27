@@ -28,6 +28,18 @@ export const TextIngredients = styled.Text`
 `
 
 export const TextSize = styled.Text`
-    font-size: 16px;
-    font-weight:
+    font-size: 14px;
+    font-weight: 300;
+`
+
+export const CounterView = styled.View`
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+`
+
+export const TextPrice = styled.Text`
+    font-size: 20px;
+    bottom: 15px;
+    margin-top: auto;
 `

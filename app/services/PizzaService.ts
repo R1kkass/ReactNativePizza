@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/dist/query/react'
-import { IData, IPizzas, ITaste } from './interface'
+import { IBasket, IData, IPizzas, ITaste } from './interface'
 
 export const pizzaApi =  createApi({
     reducerPath: 'pizzaAPI',
@@ -15,6 +15,14 @@ export const pizzaApi =  createApi({
         getAllTaste: build.query<IData<ITaste, string>, number>({
             query: () => ({
                 url: '/taste/gettaste'
+            })
+        }),
+        getBasket: build.query<IBasket[], string>({
+            query: (basketId) => ({
+                url: `/basket/getbasket`,
+                params: {
+                    basketId
+                }
             })
         })
     })

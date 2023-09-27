@@ -1,6 +1,6 @@
 import { Dimensions, View } from "react-native";
 import { CardContainer, CardImage, TextIngredients, TextName } from "./styles";
-import { FC, useCallback, useState } from "react";
+import { FC, useState } from "react";
 import { ICard } from "./interface";
 import { InView } from "react-native-intersection-observer";
 import Button from "../../shared/Button/Button";

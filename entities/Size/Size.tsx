@@ -13,7 +13,7 @@ const Size: FC<ISize> = ({ callback, price }) => {
                 <TextView
                     onPress={() => {
                         setPosition(0);
-                        callback(Number(price) - 200, "Маленькая");
+                        callback(200, "Маленькая");
                     }}
                 >
                     <Text>Маленькая</Text>
@@ -21,7 +21,7 @@ const Size: FC<ISize> = ({ callback, price }) => {
                 <TextView
                     onPress={() => {
                         setPosition(50);
-                        callback(Number(price), "Средняя");
+                        callback(0, "Средняя");
                     }}
                 >
                     <Text>Средняя</Text>
@@ -29,7 +29,7 @@ const Size: FC<ISize> = ({ callback, price }) => {
                 <TextView
                     onPress={() => {
                         setPosition(100);
-                        callback(Number(price) + 200, "Большая");
+                        callback(200, "Большая");
                     }}
                 >
                     <Text>Большая</Text>

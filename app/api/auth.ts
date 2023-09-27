@@ -11,16 +11,16 @@ export interface IRegistration extends IAuth {
 }
 
 export const AuthApi = {
-    async login(data: IAuth) {
+    async login(data: IAuth):Promise<string> {
         const res = await $api.post("/user/login", data);
         let cookie: string | undefined = res.headers["set-cookie"]?.[0];
         cookie = cookie?.replace("refresh_token=", "").replace(/\;.*/, "");
-        return cookie;
+        return String(cookie);
     },
-    async registration(data: IRegistration) {
+    async registration(data: IRegistration):Promise<string> {
         const res = await $api.post("/user/registration", data);
         let cookie: string | undefined = res.headers["set-cookie"]?.[0];
         cookie = cookie?.replace("refresh_token=", "").replace(/\;.*/, "");
-        return cookie;
+        return String(cookie);
     },
 };

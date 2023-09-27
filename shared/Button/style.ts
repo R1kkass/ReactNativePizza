@@ -15,7 +15,7 @@ export const MyTouch = styled.TouchableOpacity<IProps>`
 `
 
 export const TextTouch = styled.Text<IProps>`
-    color: ${props=>props.color ? 'white' : "orangered"};
+    color: ${props=>props?.color ? 'white' : "orangered"};
     font-size: ${props=>props?.large ? '18px' : '16px'};
     align-items: center;
 

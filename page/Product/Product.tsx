@@ -1,8 +1,9 @@
-import { Image } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 import { FC, useState, useEffect } from "react";
 import { IProduct } from "./interface";
 import {
     ButtonView,
+    ContainerView,
     NameProduct,
     ProductScroll,
     TasteText,
@@ -14,20 +15,25 @@ import Size from "../../entities/Size/Size";
 import Taste from "../../entities/Taste/Taste";
 import { useAppDispatch, useAppSelector } from "../../app/store/hooks";
 import { initTaste } from "../../app/store/TasteSlice";
+import { BasketApi } from "../../app/api/basket";
+import { IProductBasket } from "../../app/api/interface";
+import { IPizzas } from "../../app/services/interface";
 
 const Product: FC<IProduct> = ({ route }) => {
-    const { image, name, price, ingredients, category, weight } = route.params;
+    const { image, name, price, ingredients, category, weight, _id } =
+        route.params;
 
     const [proPrice, setProPrice] = useState(Number(price));
     const [size, setSize] = useState("Средняя");
     const [type, setType] = useState("Традиционное");
-    let priceTaste = 0;
+    const [priceSize, setPriceSize] = useState(0);
 
     const dispatch = useAppDispatch();
     const taste = useAppSelector((state) => state.tasteReducer.taste);
+    const basketId = useAppSelector((state) => state.storageeReducer.basketId);
 
     function productPrice(price: number, name: string) {
-        setProPrice(price);
+        setPriceSize(price);
         setSize(name);
     }
 
@@ -36,36 +42,63 @@ const Product: FC<IProduct> = ({ route }) => {
     }, []);
 
     useEffect(() => {
-        priceTaste = taste?.reduce((acc, e) => {
-            return Number(e.price) + acc;
-        }, 0) + proPrice - priceTaste;
-        setProPrice(priceTaste);
-    }, [taste]);
+        setProPrice(
+            taste?.reduce((acc, e) => {
+                return Number(e.price) + acc;
+            }, 0) +
+                Number(price) +
+                priceSize
+        );
+    }, [taste, priceSize]);
+
+    async function addBasket() {
+        let product: IProductBasket = route.params;
+        product.addTaste = taste;
+
+        if(category==="Пицца"){
+            product.size=size
+            product.dough=type
+        }
+
+        await BasketApi.addBasket({
+            basketId,
+            count: 1,
+            product,
+            price: proPrice,
+        });
+    }
 
     return (
         <>
             <ProductScroll>
                 <Image
-                    style={{ minHeight: 400, width: "100%" }}
+                    style={{
+                        height: 400,
+                        width: "100%",
+                        marginLeft: 0,
+                        right: -8,
+                    }}
                     source={{
                         uri: image,
                     }}
                 />
-                <NameProduct>{name}</NameProduct>
-                <WeightText>
-                    {weight} {category == "Пицца" && `, ${size}, ${type}`}
-                </WeightText>
-                <TasteText>{ingredients}</TasteText>
-                {category === "Пицца" && (
-                    <>
-                        <Size price={price} callback={productPrice} />
-                        <Taste callback={(e) => setType(e)} />
-                        <TasteList />
-                    </>
-                )}
+                <ContainerView>
+                    <NameProduct onPress={addBasket}>{name}</NameProduct>
+                    <WeightText>
+                        {weight} {category == "Пицца" && `, ${size}, ${type}`}
+                    </WeightText>
+                    <TasteText>{ingredients}</TasteText>
+                    {category === "Пицца" && (
+                        <>
+                            <Size price={price} callback={productPrice} />
+                            <Taste callback={(e) => setType(e)} />
+                            <TasteList />
+                        </>
+                    )}
+                </ContainerView>
             </ProductScroll>
             <ButtonView>
-                <Button large={true} color={true}>
+                <Button onPress={addBasket} large={true} color={true}>
                     Добавить в корзину {proPrice}₽
                 </Button>
             </ButtonView>
