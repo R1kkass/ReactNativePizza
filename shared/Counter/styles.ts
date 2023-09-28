@@ -10,4 +10,13 @@ export const CounterView = styled.View`
 
 export const CounterText = styled.Text`
     font-size: 22px;
+    width: 30px;
+    align-items: center;
+    text-align: center;
+`
+
+export const CounterTouchable = styled.TouchableOpacity`
+    width: 30px;
+    height: 30px;
+    align-items: center;
 `

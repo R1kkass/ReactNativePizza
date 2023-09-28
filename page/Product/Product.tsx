@@ -15,9 +15,8 @@ import Size from "../../entities/Size/Size";
 import Taste from "../../entities/Taste/Taste";
 import { useAppDispatch, useAppSelector } from "../../app/store/hooks";
 import { initTaste } from "../../app/store/TasteSlice";
-import { BasketApi } from "../../app/api/basket";
 import { IProductBasket } from "../../app/api/interface";
-import { IPizzas } from "../../app/services/interface";
+import { basketApi } from "../../app/services/BasketService";
 
 const Product: FC<IProduct> = ({ route }) => {
     const { image, name, price, ingredients, category, weight, _id } =
@@ -31,6 +30,8 @@ const Product: FC<IProduct> = ({ route }) => {
     const dispatch = useAppDispatch();
     const taste = useAppSelector((state) => state.tasteReducer.taste);
     const basketId = useAppSelector((state) => state.storageeReducer.basketId);
+
+    const [addBasketRedux] = basketApi.useAddBasketMutation();
 
     function productPrice(price: number, name: string) {
         setPriceSize(price);
@@ -55,12 +56,12 @@ const Product: FC<IProduct> = ({ route }) => {
         let product: IProductBasket = route.params;
         product.addTaste = taste;
 
-        if(category==="Пицца"){
-            product.size=size
-            product.dough=type
+        if (category === "Пицца") {
+            product.size = size;
+            product.dough = type;
         }
 
-        await BasketApi.addBasket({
+        addBasketRedux({
             basketId,
             count: 1,
             product,

@@ -1,9 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Main from "./Main/Main";
 import Router from "./product";
 import UserRouter from "./user";
-import Basket from "./Basket/Basket";
+import BasketRouter from "./basket";
 
 const Tab = createBottomTabNavigator();
 
@@ -46,7 +45,7 @@ const Routing = () => {
             <Tab.Screen
                 options={{ headerShown: false }}
                 name="Корзина"
-                component={Basket}
+                component={BasketRouter}
             />
             <Tab.Screen
                 name="Пользователь"

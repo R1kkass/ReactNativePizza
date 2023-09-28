@@ -3,7 +3,7 @@ import {
     AuthButton,
     AuthButtonText,
     AuthError,
-    AuthInput,
+    Input,
     AuthLink,
     AuthText,
     AuthView,
@@ -43,8 +43,8 @@ const Auth = ({ navigation }: any) => {
     return (
         <AuthView>
             <AuthText>Вход</AuthText>
-            <AuthInput inputMode="email" onChangeText={(e:string) => setEmail(e)} placeholder="E-Mail" />
-            <AuthInput
+            <Input inputMode="email" onChangeText={(e:string) => setEmail(e)} placeholder="E-Mail" />
+            <Input
                 secureTextEntry={true}
                 onChangeText={(e: string) => setPassword(e)}
                 placeholder="Пароль"

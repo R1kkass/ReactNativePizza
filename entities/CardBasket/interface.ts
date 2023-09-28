@@ -8,6 +8,5 @@ export interface ICardBasket extends IPizzas{
     token: string
     basketId: string
     id: string
-    refetch: ()=>void
 }
 

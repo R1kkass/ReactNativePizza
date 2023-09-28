@@ -6,24 +6,19 @@ export const pizzaApi =  createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://37.140.195.252:5001/api/'
     }),
+    tagTypes:['Pizzas'],
     endpoints: (build)=> ({
         getAllPizzas: build.query<IData<IPizzas,string>, number>({
             query: () => ({
                 url: '/pizza/getall'
-            })
+            }),
+            providesTags: ['Pizzas']
         }),
         getAllTaste: build.query<IData<ITaste, string>, number>({
             query: () => ({
                 url: '/taste/gettaste'
-            })
-        }),
-        getBasket: build.query<IBasket[], string>({
-            query: (basketId) => ({
-                url: `/basket/getbasket`,
-                params: {
-                    basketId
-                }
-            })
+            }),
+            providesTags: ['Pizzas']
         })
     })
 })

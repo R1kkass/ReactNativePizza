@@ -20,8 +20,7 @@ const CardBasket: FC<ICardBasket> = ({
     size,
     dough,
     count,
-    id,
-    refetch
+    id
 }) => {
     const [view, setView] = useState(false);
 
@@ -59,9 +58,9 @@ const CardBasket: FC<ICardBasket> = ({
                 <TextPrice>{priceProd} ₽</TextPrice>
             </View>
             <CounterView>
-                <Counter id={id} refetch={refetch} count={count} />
+                <Counter id={id}count={count} />
             </CounterView>
-            <DeleteBasket refetch={refetch} id={id} />
+            <DeleteBasket id={id} />
         </CardContainer>
     );
 };

@@ -5,13 +5,15 @@ export const AuthView = styled.View`
     height: 100%;
     align-items: center;
     justify-content: center;
+    padding-left: 16px;
+    padding-right: 16px;
     gap: 15px;
     background: white;
 `;
 
-export const AuthInput = styled.TextInput`
+export const Input = styled.TextInput`
     border: 1px solid orangered;
-    width: 90%;
+    width: 100%;
     height: 45px;
     border-radius: 20px;
     background: rgb(255, 240, 230);

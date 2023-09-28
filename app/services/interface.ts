@@ -31,3 +31,8 @@ export interface IBasket{
     productId: string;
     product: IPizzas[];
 }
+
+export interface IDeleteBasket{
+    id: string,
+    basketId: string | number
+}
