@@ -9,6 +9,8 @@ import React, { useCallback } from "react";
 import ButtonSubmit from "../../entities/ButtonSubmit/ButtonSubmit";
 import Price from "../../entities/Price/Price";
 import { basketApi } from "../../app/services/BasketService";
+import Notification from "../../shared/Notification/Notification";
+import Loading from "../../entities/Loading/Loading";
 
 const Basket = ({navigation}:any) => {
     const basketId = useAppSelector((state) => state.storageeReducer.basketId);
@@ -18,6 +20,7 @@ const Basket = ({navigation}:any) => {
         refetch,
         isLoading,
     } = basketApi.useGetBasketQuery(basketId || "0");
+    const [updateBasket, {isLoading: isLoadUpdate}] = basketApi.useUpdateBasketMutation();
     
     useFocusEffect(
         useCallback(() => {
@@ -30,8 +33,10 @@ const Basket = ({navigation}:any) => {
     }
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{position: 'relative'}}>
+            {isLoading && <Loading/>}
             <Price data={basket}/>
+            <Notification/>
             <IOScrollView
                 refreshControl={
                     <RefreshControl

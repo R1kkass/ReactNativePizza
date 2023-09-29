@@ -5,10 +5,11 @@ import { useAppSelector } from "../../app/store/hooks";
 import { BasketApi } from "../../app/api/basket";
 import { basketApi } from "../../app/services/BasketService";
 import { Touchable, TouchableOpacity } from "react-native";
+import Loading from "../../entities/Loading/Loading";
 
 const Counter: FC<ICounter> = ({ count, id }) => {
     const basketId = useAppSelector((state) => state.storageeReducer.basketId);
-    const [updateBasket, result] = basketApi.useUpdateBasketMutation();
+    const [updateBasket, {isLoading}] = basketApi.useUpdateBasketMutation();
     const [deleteBasket, results] = basketApi.useDeleteBasketMutation();
 
     function update(count: number) {

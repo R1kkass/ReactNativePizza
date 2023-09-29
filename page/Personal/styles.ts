@@ -15,3 +15,7 @@ export const PersonalMainView = styled.View`
     flex-direction: row;
     justify-content: space-between;
 `
+
+export const PersonalEmail = styled.Text`
+    font-size: 22px;
+`

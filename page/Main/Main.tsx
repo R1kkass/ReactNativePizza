@@ -4,6 +4,7 @@ import Card from "../../entities/Card/Card";
 import { IOScrollView } from "react-native-intersection-observer";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextError } from "../../shared/Error/styles";
+import Loading from "../../entities/Loading/Loading";
 
 const Main = ({ navigation }: any) => {
     const { data: pizzas, isError, refetch, isLoading } = pizzaApi.useGetAllPizzasQuery(0);
@@ -11,7 +12,7 @@ const Main = ({ navigation }: any) => {
     return (
         <SafeAreaView>
             <IOScrollView style={{ height: "100%", backgroundColor: "white" }}>
-                {isLoading && <Text>Загрузка...</Text>}
+                {isLoading && <Loading/>}
                 {isError ? (
                     <TextError/>
                 ) : (

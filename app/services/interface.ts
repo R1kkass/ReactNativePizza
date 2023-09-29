@@ -36,3 +36,9 @@ export interface IDeleteBasket{
     id: string,
     basketId: string | number
 }
+
+export interface IPersonal {
+    userId: string
+    _id: string
+    product: IBasket[]
+}

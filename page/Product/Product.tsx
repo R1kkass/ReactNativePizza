@@ -1,4 +1,10 @@
-import { Image, TouchableOpacity } from "react-native";
+import {
+    ActivityIndicator,
+    Image,
+    Text,
+    TouchableOpacity,
+    View,
+} from "react-native";
 import { FC, useState, useEffect } from "react";
 import { IProduct } from "./interface";
 import {
@@ -17,6 +23,9 @@ import { useAppDispatch, useAppSelector } from "../../app/store/hooks";
 import { initTaste } from "../../app/store/TasteSlice";
 import { IProductBasket } from "../../app/api/interface";
 import { basketApi } from "../../app/services/BasketService";
+import NotificationProduct from "../../entities/NotificationProduct/NotificationProduct";
+import NotificationError from "../../entities/NotificationError/NotificationError";
+import Loading from "../../entities/Loading/Loading";
 
 const Product: FC<IProduct> = ({ route }) => {
     const { image, name, price, ingredients, category, weight, _id } =
@@ -31,7 +40,8 @@ const Product: FC<IProduct> = ({ route }) => {
     const taste = useAppSelector((state) => state.tasteReducer.taste);
     const basketId = useAppSelector((state) => state.storageeReducer.basketId);
 
-    const [addBasketRedux] = basketApi.useAddBasketMutation();
+    const [addBasketRedux, { isSuccess, isError, isLoading }] =
+        basketApi.useAddBasketMutation();
 
     function productPrice(price: number, name: string) {
         setPriceSize(price);
@@ -71,6 +81,9 @@ const Product: FC<IProduct> = ({ route }) => {
 
     return (
         <>
+            {isSuccess && <NotificationProduct />}
+            {isError && <NotificationError />}
+            {isLoading && <Loading />}
             <ProductScroll>
                 <Image
                     style={{
