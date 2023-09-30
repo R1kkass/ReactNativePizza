@@ -1,6 +1,6 @@
 import $api from "../axios";
 import { IData } from "./interface";
-import { ICardBasket } from "../../entities/CardBasket/interface";
+import { ICardBasket } from "@/entities/CardBasket/interface";
 import { IUpdateBasket, IAddBasket } from "./interface";
 import axios from "axios";
 

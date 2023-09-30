@@ -10,7 +10,7 @@ import {
 import { FC, useState } from "react";
 import { ICardBasket } from "./interface";
 import { InView } from "react-native-intersection-observer";
-import Counter from "../../shared/Counter/Counter";
+import Counter from "@/shared/Counter/Counter";
 import DeleteBasket from "../DeleteBasket/DeleteBasket";
 
 const CardBasket: FC<ICardBasket> = ({
@@ -20,7 +20,7 @@ const CardBasket: FC<ICardBasket> = ({
     size,
     dough,
     count,
-    id
+    id,
 }) => {
     const [view, setView] = useState(false);
 
@@ -58,7 +58,7 @@ const CardBasket: FC<ICardBasket> = ({
                 <TextPrice>{priceProd} ₽</TextPrice>
             </View>
             <CounterView>
-                <Counter id={id}count={count} />
+                <Counter id={id} count={count} />
             </CounterView>
             <DeleteBasket id={id} />
         </CardContainer>

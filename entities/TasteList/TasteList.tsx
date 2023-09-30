@@ -1,11 +1,7 @@
 import { Text, View } from "react-native";
-import { pizzaApi } from "../../app/services/PizzaService";
-import {
-    AddTasteText,
-    TasteContainer,
-    TasteView,
-} from "./styles";
-import TasteUnit from "../../shared/TasteUnit/TasteUnit";
+import { pizzaApi } from "@/app/services/PizzaService";
+import { AddTasteText, TasteContainer, TasteView } from "./styles";
+import TasteUnit from "@/shared/TasteUnit/TasteUnit";
 
 const TasteList = () => {
     const { data: taste, isError } = pizzaApi.useGetAllTasteQuery(0);

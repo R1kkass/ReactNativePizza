@@ -8,11 +8,11 @@ import {
     AuthView,
 } from "./styles";
 import { validate } from "./validate";
-import { AuthApi } from "../../app/api/auth";
+import { AuthApi } from "@/app/api/auth";
 import * as SecureStore from "expo-secure-store";
-import { addBasketId, addToken } from "../../app/store/StorageSlice";
-import { appJwtDecode } from "../../app/jwtDecode";
-import { useAppDispatch } from "../../app/store/hooks";
+import { addBasketId, addToken } from "@/app/store/StorageSlice";
+import { appJwtDecode } from "@/app/jwtDecode";
+import { useAppDispatch } from "@/app/store/hooks";
 
 const Registration = ({ navigation }: any) => {
     const [email, setEmail] = useState("");

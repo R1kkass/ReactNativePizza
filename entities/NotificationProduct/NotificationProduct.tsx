@@ -1,5 +1,5 @@
 import { Text } from "react-native";
-import Notification from "../../shared/Notification/Notification";
+import Notification from "@/shared/Notification/Notification";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const NotificationProduct = () => {
@@ -15,4 +15,4 @@ const NotificationProduct = () => {
     );
 };
 
-export default NotificationProduct
+export default NotificationProduct;

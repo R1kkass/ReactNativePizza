@@ -21,10 +21,10 @@ export interface ITaste {
 }
 
 export type IData<D, K> = {
-    [k: string]: D[]
-}
+    [k: string]: D[];
+};
 
-export interface IBasket{
+export interface IBasket {
     _id: string;
     count: number;
     price: string;
@@ -32,13 +32,28 @@ export interface IBasket{
     product: IPizzas[];
 }
 
-export interface IDeleteBasket{
-    id: string,
-    basketId: string | number
+export interface IDeleteBasket {
+    id: string;
+    basketId: string | number;
 }
 
 export interface IPersonal {
-    userId: string
-    _id: string
-    product: IBasket[]
+    userId: string;
+    _id: string;
+    product: IBasket[];
+}
+
+export interface ISubmit {
+    city: string;
+    name: string;
+    apartament?: string;
+    product: IBasket[];
+    price: string | number;
+    phone: string;
+    count: number;
+    date: number;
+}
+
+export interface ISubmitBody extends ISubmit{
+    token: string
 }

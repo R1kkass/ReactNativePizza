@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-import { IBasket, IData, IDeleteBasket, IPizzas, ITaste } from "./interface";
+import { IBasket, IData, IDeleteBasket, IPizzas, ISubmit, ISubmitBody, ITaste } from "./interface";
 import { IAddBasket, IUpdateBasket } from "../api/interface";
 
 export const basketApi = createApi({
@@ -41,5 +41,15 @@ export const basketApi = createApi({
             }),
             invalidatesTags: ["Basket"],
         }),
+        sendBasket: build.mutation<IBasket[], ISubmitBody>({
+            query: (body)=>({
+                url: '/order/addorder',
+                method: 'POST',
+                body,
+                headers:{
+                    Authorization: `Bearer ${body.token}`
+                }
+            })
+        })
     }),
 });

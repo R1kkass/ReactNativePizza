@@ -1,8 +1,10 @@
-import Button from "../../shared/Button/Button";
+import Button from "@/shared/Button/Button";
+import { FC } from "react";
+import { IButtonSubmit } from "./interface";
 
-const ButtonSubmit = () => {
+const ButtonSubmit: FC<IButtonSubmit> = ({ onPress }) => {
     return (
-        <Button large={true} color={true}>
+        <Button onPress={onPress} large={true} color={true}>
             К оформлению заказа
         </Button>
     );

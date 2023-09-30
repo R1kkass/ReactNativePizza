@@ -1,43 +1,42 @@
 {
-  "expo": {
-    "name": "BoboPizza",
-    "slug": "BoboPizza",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/Logo.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.rikkas.BoboPizza"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/Logo.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.rikkas.BoboPizza"
-    },
-    "web": {
-      "favicon": "./assets/Logo.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "37fd29de-6601-4c4f-9a5a-cfd6e03f2b49"
-      }
-    },
-    "runtimeVersion": {
-      "policy": "sdkVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/37fd29de-6601-4c4f-9a5a-cfd6e03f2b49"
+    "expo": {
+        "name": "BoboPizza",
+        "slug": "BoboPizza",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "userInterfaceStyle": "automatic",
+        "experiments": { "tsconfigPaths": true },
+        "splash": {
+            "image": "./assets/Logo.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "assetBundlePatterns": ["**/*"],
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.rikkas.BoboPizza"
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/Logo.png",
+                "backgroundColor": "#ffffff"
+            },
+            "package": "com.rikkas.BoboPizza"
+        },
+        "web": {
+            "favicon": "./assets/Logo.png"
+        },
+        "extra": {
+            "eas": {
+                "projectId": "37fd29de-6601-4c4f-9a5a-cfd6e03f2b49"
+            }
+        },
+        "runtimeVersion": {
+            "policy": "sdkVersion"
+        },
+        "updates": {
+            "url": "https://u.expo.dev/37fd29de-6601-4c4f-9a5a-cfd6e03f2b49"
+        }
     }
-  }
 }

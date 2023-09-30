@@ -15,17 +15,17 @@ import {
     TasteText,
     WeightText,
 } from "./styles";
-import Button from "../../shared/Button/Button";
-import TasteList from "../../entities/TasteList/TasteList";
-import Size from "../../entities/Size/Size";
-import Taste from "../../entities/Taste/Taste";
-import { useAppDispatch, useAppSelector } from "../../app/store/hooks";
-import { initTaste } from "../../app/store/TasteSlice";
-import { IProductBasket } from "../../app/api/interface";
-import { basketApi } from "../../app/services/BasketService";
-import NotificationProduct from "../../entities/NotificationProduct/NotificationProduct";
-import NotificationError from "../../entities/NotificationError/NotificationError";
-import Loading from "../../entities/Loading/Loading";
+import Button from "@/shared/Button/Button";
+import TasteList from "@/entities/TasteList/TasteList";
+import Size from "@/entities/Size/Size";
+import Taste from "@/entities/Taste/Taste";
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
+import { initTaste } from "@/app/store/TasteSlice";
+import { IProductBasket } from "@/app/api/interface";
+import { basketApi } from "@/app/services/BasketService";
+import NotificationProduct from "@/entities/NotificationProduct/NotificationProduct";
+import NotificationError from "@/entities/NotificationError/NotificationError";
+import Loading from "@/entities/Loading/Loading";
 
 const Product: FC<IProduct> = ({ route }) => {
     const { image, name, price, ingredients, category, weight, _id } =

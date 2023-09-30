@@ -1,9 +1,9 @@
-import { Dimensions, View } from "react-native";
+import { Dimensions, TouchableNativeFeedback, View } from "react-native";
 import { CardContainer, CardImage, TextIngredients, TextName } from "./styles";
 import { FC, useState } from "react";
 import { ICard } from "./interface";
 import { InView } from "react-native-intersection-observer";
-import Button from "../../shared/Button/Button";
+import Button from "@/shared/Button/Button";
 
 const Card: FC<ICard> = ({
     image,
@@ -55,6 +55,7 @@ const Card: FC<ICard> = ({
                     />
                 )}
             </InView>
+
             <View>
                 <TextName>{name}</TextName>
                 <TextIngredients>{ingredients}</TextIngredients>

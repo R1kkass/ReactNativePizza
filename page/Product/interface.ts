@@ -1,7 +1,7 @@
-import { IPizzas } from "../../app/services/interface"
+import { IPizzas } from "@/app/services/interface";
 
-export interface IProduct{
-    route:{
-        params: IPizzas
-    }
+export interface IProduct {
+    route: {
+        params: IPizzas;
+    };
 }

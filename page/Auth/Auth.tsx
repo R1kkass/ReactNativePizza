@@ -8,12 +8,12 @@ import {
     AuthText,
     AuthView,
 } from "./styles";
-import { AuthApi } from "../../app/api/auth";
+import { AuthApi } from "@/app/api/auth";
 import * as SecureStore from "expo-secure-store";
 import { validate } from "./validate";
-import { appJwtDecode } from "../../app/jwtDecode";
-import { useAppDispatch } from "../../app/store/hooks";
-import { addBasketId, addToken } from "../../app/store/StorageSlice";
+import { appJwtDecode } from "@/app/jwtDecode";
+import { useAppDispatch } from "@/app/store/hooks";
+import { addBasketId, addToken } from "@/app/store/StorageSlice";
 
 const Auth = ({ navigation }: any) => {
     const [email, setEmail] = useState("");

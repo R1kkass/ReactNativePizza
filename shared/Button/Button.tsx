@@ -6,7 +6,7 @@ import { IButton } from "./interface"
 const Button:FC<IButton> = (props) => {
     return(
         <MyTouch {...props}>
-            <TextTouch {...props}></TextTouch>
+            <TextTouch large={props?.large || false} color={props?.color}>{props?.children}</TextTouch>
         </MyTouch>
     )
 }
