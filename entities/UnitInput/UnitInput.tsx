@@ -22,7 +22,7 @@ const UnitInput = ({ control, name, rules, placeholder }: any) => {
                 onChangeText={field.onChange}
                 placeholder={placeholder}
             />
-            {errors?.[name] && <TextError>{errors?.[name]?.message || ""}</TextError>}
+            {errors?.[name] && <TextError>{errors?.[name]?.message?.toString()}</TextError>}
         </View>
     );
 };

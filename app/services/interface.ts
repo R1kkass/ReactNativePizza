@@ -29,7 +29,7 @@ export interface IBasket {
     count: number;
     price: string;
     productId: string;
-    product: IPizzas[];
+    product: IPizzas;
 }
 
 export interface IDeleteBasket {
@@ -38,9 +38,20 @@ export interface IDeleteBasket {
 }
 
 export interface IPersonal {
-    userId: string;
     _id: string;
+    apartament: string;
+    city: string;
+    house: string;
+    phone: string;
+    date: string;
     product: IBasket[];
+    status: string;
+    street: string;
+    count: string;
+    price: number;
+    name: string;
+    userId: string;
+    basketId: string;
 }
 
 export interface ISubmit {
@@ -54,6 +65,6 @@ export interface ISubmit {
     date: number;
 }
 
-export interface ISubmitBody extends ISubmit{
-    token: string
+export interface ISubmitBody extends ISubmit {
+    token: string;
 }
