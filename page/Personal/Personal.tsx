@@ -25,8 +25,9 @@ const Personal = ({ navigation }: any) => {
     const dispatch = useAppDispatch();
 
     async function exit() {
-        await SecureStore.setItemAsync("token", "");
         dispatch(addToken(""));
+
+        await SecureStore.setItemAsync("token", "");
 
         navigation.navigate("Главная");
     }
@@ -45,7 +46,7 @@ const Personal = ({ navigation }: any) => {
                         />
                     </TouchableOpacity>
                 </PersonalMainView>
-                <PersonalEmail>{appJwtDecode(token).email}</PersonalEmail>
+                <PersonalEmail>{appJwtDecode(token || "")?.email}</PersonalEmail>
                 {orders?.map((order) => (
                     <CardPersonal {...order} />
                 ))}

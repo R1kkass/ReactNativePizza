@@ -11,7 +11,6 @@ const Main = ({ navigation }: any) => {
     const {
         data: pizzas,
         isError,
-        refetch,
         isLoading,
     } = pizzaApi.useGetAllPizzasQuery(0);
 
