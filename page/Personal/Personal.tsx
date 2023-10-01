@@ -26,7 +26,7 @@ const Personal = ({ navigation }: any) => {
 
     async function exit() {
         await SecureStore.setItemAsync("token", "");
-        dispatch(addToken(null));
+        dispatch(addToken(""));
 
         navigation.navigate("Главная");
     }
