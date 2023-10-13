@@ -21,6 +21,7 @@ const CardBasket: FC<ICardBasket> = ({
     dough,
     count,
     id,
+    
 }) => {
     const [view, setView] = useState(false);
 
@@ -37,7 +38,8 @@ const CardBasket: FC<ICardBasket> = ({
             <InView
                 style={{
                     minHeight: 130,
-                    minWidth: Dimensions.get("window").width / 3,
+                    width: Dimensions.get("window").width / 3,
+                    maxWidth: 155,
                 }}
                 onChange={(bol) => vis(bol)}
             >
@@ -52,9 +54,11 @@ const CardBasket: FC<ICardBasket> = ({
             </InView>
             <View>
                 <TextName>{name}</TextName>
-                <TextSize>
-                    {size}, {dough}
-                </TextSize>
+                {size && dough && (
+                    <TextSize>
+                        {size}, {dough}
+                    </TextSize>
+                )}
                 <TextPrice>{priceProd} ₽</TextPrice>
             </View>
             <CounterView>

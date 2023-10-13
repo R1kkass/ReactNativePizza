@@ -47,7 +47,7 @@ const Notification: FC<INotification> = ({ children }) => {
 
 const styles = StyleSheet.create({
     box: {
-        width: "90%",
+        width: width-32,
         position: "absolute",
         flexDirection: "row",
         height: 70,

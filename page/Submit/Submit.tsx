@@ -127,6 +127,7 @@ const Submit = ({ navigation }: any) => {
                         onPress={handleSubmit(onSubmit)}
                         large={true}
                         color={true}
+                        style={{minWidth: '100%'}}
                     >
                         Подтвердить
                     </Button>

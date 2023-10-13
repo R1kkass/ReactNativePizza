@@ -42,7 +42,8 @@ const Card: FC<ICard> = ({
             <InView
                 style={{
                     minHeight: 130,
-                    minWidth: Dimensions.get("window").width / 3,
+                    width: Dimensions.get("window").width / 3,
+                    maxWidth: 155,
                 }}
                 onChange={(bol) => vis(bol)}
             >

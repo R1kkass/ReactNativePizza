@@ -8,6 +8,7 @@ export const CardContainer = styled.Pressable`
     margin-right: auto;
     display: flex;
     flex-direction: row;
+    justify-content: start;
     border: 0.5px solid #a6a6a6;
     elevation: 5;
     background: white;
@@ -17,7 +18,7 @@ export const CardContainer = styled.Pressable`
 
 export const CardImage = styled.Image`
     width: ${Dimensions.get('window').width / 3}px;
-    max-width: 300px;
+    max-width: 150px;
     height: 100%;
 `
 

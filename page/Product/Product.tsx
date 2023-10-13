@@ -91,6 +91,7 @@ const Product: FC<IProduct> = ({ route }) => {
                         width: "100%",
                         marginLeft: 0,
                         right: -8,
+                        objectFit: 'contain'
                     }}
                     source={{
                         uri: image,

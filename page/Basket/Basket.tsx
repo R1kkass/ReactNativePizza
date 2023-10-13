@@ -44,7 +44,7 @@ const Basket = ({ navigation }: any) => {
                     />
                 }
                 style={{
-                    height: Dimensions.get("window").height - 50 - 50 - 60,
+                    minHeight: Dimensions.get("window").height - 50 - 70 - 60,
                     backgroundColor: "white",
                 }}
             >

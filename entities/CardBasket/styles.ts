@@ -11,7 +11,7 @@ export const CardContainer = styled.Pressable`
 
 export const CardImage = styled.Image`
     width: ${Dimensions.get('window').width / 3}px;
-    max-width: 300px;
+    max-width: 150px;
     height: 100%;
 `
 
