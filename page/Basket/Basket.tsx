@@ -1,5 +1,5 @@
-import { Dimensions, Image, RefreshControl } from "react-native";
-import { BasketView } from "./styles";
+import { Dimensions, Image, RefreshControl, Text, View } from "react-native";
+import { BasketImage, BasketView } from "./styles";
 import CardBasket from "@/entities/CardBasket/CardBasket";
 import { IOScrollView } from "react-native-intersection-observer";
 import { useAppSelector } from "@/app/store/hooks";
@@ -9,6 +9,7 @@ import React, { useCallback } from "react";
 import ButtonSubmit from "@/entities/ButtonSubmit/ButtonSubmit";
 import Price from "@/entities/Price/Price";
 import { basketApi } from "@/app/services/BasketService";
+import Button from "@/shared/Button/Button";
 
 const Basket = ({ navigation }: any) => {
     const basketId = useAppSelector((state) => state.storageeReducer.basketId);
@@ -18,6 +19,8 @@ const Basket = ({ navigation }: any) => {
         refetch,
         isLoading,
     } = basketApi.useGetBasketQuery(basketId || "0");
+
+    const token = useAppSelector((state) => state.storageeReducer.token);
 
     useFocusEffect(
         useCallback(() => {
@@ -55,20 +58,31 @@ const Basket = ({ navigation }: any) => {
                     />
                 ))}
                 {basket?.length === 0 && (
-                    <Image
-                        style={{ margin: "auto" }}
-                        source={require("@/assets/Empty.png")}
-                    />
+                    <View style={{height: Dimensions.get('window').height-180}}>
+                        <BasketImage source={require("@/assets/Empty.png")} />
+                    </View>
                 )}
             </IOScrollView>
 
-            {!!basket?.length && (
-                <BasketView>
-                    <ButtonSubmit
-                        onPress={() => navigation.navigate("Подтвердить")}
-                    />
-                </BasketView>
-            )}
+            {!!basket?.length ? (
+                token ? (
+                    <BasketView>
+                        <ButtonSubmit
+                            onPress={() => navigation.navigate("Подтвердить")}
+                        />
+                    </BasketView>
+                ) : (
+                    <BasketView>
+                        <Button
+                            onPress={() => navigation.navigate("Вход")}
+                            large={true}
+                            color={true}
+                        >
+                            Аторизоваться
+                        </Button>
+                    </BasketView>
+                )
+            ) : null}
         </SafeAreaView>
     );
 };

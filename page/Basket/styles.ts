@@ -11,3 +11,8 @@ export const BasketView = styled.Pressable`
     height: 60px;
     justify-content: center;
 `;
+
+export const BasketImage = styled.Image`
+    margin: auto;
+    
+`

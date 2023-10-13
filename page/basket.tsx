@@ -1,10 +1,12 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Basket from "./Basket/Basket";
 import Submit from "./Submit/Submit";
+import { useAppSelector } from "@/app/store/hooks";
 
 const Stack = createNativeStackNavigator();
 
 const BasketRouter = () => {
+    const token = useAppSelector((state) => state.storageeReducer.token);
     return (
         <Stack.Navigator>
             <Stack.Screen
@@ -15,7 +17,7 @@ const BasketRouter = () => {
             <Stack.Screen
                 name="Подтвердить"
                 options={{ headerShown: false }}
-                component={Submit}
+                component={token ? Submit : Basket}
             />
         </Stack.Navigator>
     );

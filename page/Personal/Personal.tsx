@@ -11,7 +11,7 @@ import { Text, TouchableOpacity } from "react-native";
 import { appJwtDecode } from "@/app/jwtDecode";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { personalApi } from "@/app/services/PersonalService";
-import { addToken } from "@/app/store/StorageSlice";
+import { addBasketId, addToken } from "@/app/store/StorageSlice";
 import CardPersonal from "@/entities/CardPersonal/CardPersonal";
 
 const Personal = ({ navigation }: any) => {
@@ -25,13 +25,15 @@ const Personal = ({ navigation }: any) => {
     const dispatch = useAppDispatch();
 
     async function exit() {
+        let date = String(Date.now());
         dispatch(addToken(""));
+        dispatch(addBasketId(date));
 
         await SecureStore.setItemAsync("token", "");
+        await SecureStore.setItemAsync("basketId", date);
 
         navigation.navigate("Главная");
     }
-    console.log(orders);
 
     return (
         <SafeAreaView>
@@ -46,9 +48,11 @@ const Personal = ({ navigation }: any) => {
                         />
                     </TouchableOpacity>
                 </PersonalMainView>
-                <PersonalEmail>{appJwtDecode(token || "")?.email}</PersonalEmail>
+                <PersonalEmail>
+                    {appJwtDecode(token || "")?.email}
+                </PersonalEmail>
                 {orders?.map((order) => (
-                    <CardPersonal {...order} />
+                    <CardPersonal key={order._id} {...order} />
                 ))}
             </PersonalView>
         </SafeAreaView>

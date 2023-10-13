@@ -1,21 +1,42 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SubmitText, SubmitView, TextError } from "./styles";
 import Button from "@/shared/Button/Button";
-import { Alert, ScrollView, View } from "react-native";
+import { Alert, ScrollView, Text, View } from "react-native";
 import InputForm from "@/shared/InputForm/InputForm";
 import { useForm } from "react-hook-form";
 import { ISubmit } from "@/app/services/interface";
 import UnitInput from "@/entities/UnitInput/UnitInput";
+import { useAppSelector } from "@/app/store/hooks";
+import { basketApi } from "@/app/services/BasketService";
 
-const Submit = () => {
+const Submit = ({ navigation }: any) => {
     const {
         control,
         register,
         handleSubmit,
         formState: { errors },
     } = useForm<ISubmit>();
+    const basketId = useAppSelector((state) => state.storageeReducer.basketId);
+    const {
+        data: basket,
+        isError,
+        refetch,
+        isLoading,
+    } = basketApi.useGetBasketQuery(basketId || "0");
 
-    const onSubmit = (data: any) => Alert.alert(JSON.stringify(data));
+    const token = useAppSelector((state) => state.storageeReducer.token);
+
+    const [sendBasket, bask] = basketApi.useSendBasketMutation();
+
+    const onSubmit = (data: any) => {
+        data.count = basket?.reduce((acc, bask) => acc + bask.count, 0);
+        data.date = Date.now();
+        data.price = basket?.reduce((acc, bask) => acc + Number(bask.price), 0);
+        data.product = basket;
+        data.token = token;
+        sendBasket(data);
+        navigation.navigate('Вход')
+    };
 
     return (
         <SafeAreaView>
@@ -95,7 +116,7 @@ const Submit = () => {
                     />
                     <UnitInput
                         register={register}
-                        name="apartament"
+                        name="apartment"
                         control={control}
                         placeholder="Квартира"
                         rules={{

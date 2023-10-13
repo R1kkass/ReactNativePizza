@@ -45,7 +45,18 @@ export const basketApi = createApi({
             query: (body)=>({
                 url: '/order/addorder',
                 method: 'POST',
-                body,
+                body: {
+                    name: body.name,
+                    city: body.city,
+                    street: body.street,
+                    product: body.product,
+                    apartment: body?.apartment,
+                    price: body?.price,
+                    house: body.house,
+                    count: body.count,
+                    date: body.date,
+                    phone: body.phone
+                },
                 headers:{
                     Authorization: `Bearer ${body.token}`
                 }

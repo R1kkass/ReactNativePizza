@@ -5,17 +5,13 @@ import { useLayoutEffect, useState } from "react";
 import * as SecureStore from "expo-secure-store";
 import Personal from "./Personal/Personal";
 import { useFocusEffect } from "@react-navigation/native";
+import { useAppSelector } from "@/app/store/hooks";
 
 const Stack = createNativeStackNavigator();
 
 const UserRouter = () => {
-    const [token, setToken] = useState<string | null>();
+    const token = useAppSelector(state=>state.storageeReducer.token)    
 
-    useFocusEffect(() => {
-        SecureStore.getItemAsync("token").then((e) => {
-            setToken(e);
-        });
-    });
 
     return (
         <Stack.Navigator>
