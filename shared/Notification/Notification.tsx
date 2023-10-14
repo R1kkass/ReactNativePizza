@@ -12,7 +12,7 @@ import { INotification } from "./interface";
 
 const width = Dimensions.get("window").width;
 
-const Notification: FC<INotification> = ({ children }) => {
+const Notification: FC<INotification> = ({ children, style }) => {
     const linear = useSharedValue(-width);
 
     const animatedDefault = useAnimatedStyle(() => ({
@@ -39,7 +39,7 @@ const Notification: FC<INotification> = ({ children }) => {
     }, []);
 
     return (
-        <Animated.View style={[styles.box, animatedDefault]}>
+        <Animated.View style={[styles.box, animatedDefault, style]}>
             {children}
         </Animated.View>
     );

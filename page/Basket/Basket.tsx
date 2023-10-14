@@ -10,6 +10,7 @@ import ButtonSubmit from "@/entities/ButtonSubmit/ButtonSubmit";
 import Price from "@/entities/Price/Price";
 import { basketApi } from "@/app/services/BasketService";
 import Button from "@/shared/Button/Button";
+import PageError from "@/features/PageError/PageError";
 
 const Basket = ({ navigation }: any) => {
     const basketId = useAppSelector((state) => state.storageeReducer.basketId);
@@ -24,13 +25,10 @@ const Basket = ({ navigation }: any) => {
 
     useFocusEffect(
         useCallback(() => {
-            return () => fn();
+            return () => refetch();
         }, [])
     );
 
-    async function fn() {
-        await refetch();
-    }
 
     return (
         <SafeAreaView style={{ position: "relative" }}>
@@ -40,14 +38,16 @@ const Basket = ({ navigation }: any) => {
                     <RefreshControl
                         colors={["orangered"]}
                         refreshing={isLoading}
-                        onRefresh={() => fn()}
+                        onRefresh={refetch}
                     />
                 }
                 style={{
-                    minHeight: Dimensions.get("window").height - 50 - 70 - 60,
+                    height: Dimensions.get("window").height - 50 - 70 - 60,
                     backgroundColor: "white",
                 }}
             >
+                {isError && <PageError onPress={refetch} />}
+
                 {basket?.map((bask) => (
                     <CardBasket
                         id={bask._id}
@@ -58,7 +58,11 @@ const Basket = ({ navigation }: any) => {
                     />
                 ))}
                 {basket?.length === 0 && (
-                    <View style={{height: Dimensions.get('window').height-180}}>
+                    <View
+                        style={{
+                            height: Dimensions.get("window").height - 180,
+                        }}
+                    >
                         <BasketImage source={require("@/assets/Empty.png")} />
                     </View>
                 )}

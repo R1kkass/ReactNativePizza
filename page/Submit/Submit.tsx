@@ -8,6 +8,8 @@ import { ISubmit } from "@/app/services/interface";
 import UnitInput from "@/entities/UnitInput/UnitInput";
 import { useAppSelector } from "@/app/store/hooks";
 import { basketApi } from "@/app/services/BasketService";
+import Loading from "@/entities/Loading/Loading";
+import NotificationError from "@/entities/NotificationError/NotificationError";
 
 const Submit = ({ navigation }: any) => {
     const {
@@ -17,29 +19,31 @@ const Submit = ({ navigation }: any) => {
         formState: { errors },
     } = useForm<ISubmit>();
     const basketId = useAppSelector((state) => state.storageeReducer.basketId);
-    const {
-        data: basket,
-        isError,
-        refetch,
-        isLoading,
-    } = basketApi.useGetBasketQuery(basketId || "0");
+    const { data: basket, refetch } = basketApi.useGetBasketQuery(
+        basketId || "0"
+    );
 
     const token = useAppSelector((state) => state.storageeReducer.token);
 
-    const [sendBasket, bask] = basketApi.useSendBasketMutation();
+    const [sendBasket, { isSuccess, isError, isLoading }] =
+        basketApi.useSendBasketMutation();
 
-    const onSubmit = (data: any) => {
+    const onSubmit = async (data: any) => {
         data.count = basket?.reduce((acc, bask) => acc + bask.count, 0);
         data.date = Date.now();
         data.price = basket?.reduce((acc, bask) => acc + Number(bask.price), 0);
         data.product = basket;
         data.token = token;
-        sendBasket(data);
-        navigation.navigate('Вход')
+        await sendBasket(data);
+        if (isSuccess) {
+            navigation.navigate("Вход");
+        }
     };
 
     return (
         <SafeAreaView>
+            {isError && <NotificationError style={{top: 60}}/>}
+
             <ScrollView
                 style={{ height: "100%" }}
                 contentContainerStyle={{
@@ -50,6 +54,7 @@ const Submit = ({ navigation }: any) => {
                 }}
                 alwaysBounceHorizontal={true}
             >
+                {isLoading && <Loading />}
                 <SubmitView>
                     <SubmitText>Оформление заказа</SubmitText>
                     <View>
@@ -127,7 +132,7 @@ const Submit = ({ navigation }: any) => {
                         onPress={handleSubmit(onSubmit)}
                         large={true}
                         color={true}
-                        style={{minWidth: '100%'}}
+                        style={{ minWidth: "100%" }}
                     >
                         Подтвердить
                     </Button>

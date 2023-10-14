@@ -27,7 +27,7 @@ import NotificationProduct from "@/entities/NotificationProduct/NotificationProd
 import NotificationError from "@/entities/NotificationError/NotificationError";
 import Loading from "@/entities/Loading/Loading";
 
-const Product: FC<IProduct> = ({ route }) => {
+const Product = ({ route }: IProduct) => {
     const { image, name, price, ingredients, category, weight, _id } =
         route.params;
 

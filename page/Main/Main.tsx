@@ -6,10 +6,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { TextError } from "@/shared/Error/styles";
 import Loading from "@/entities/Loading/Loading";
 import LoadingMain from "../LoadingMain/LoadingMain";
+import PageError from "@/features/PageError/PageError";
 
 const Main = ({ navigation }: any) => {
     const {
         data: pizzas,
+        refetch,
         isError,
         isLoading,
     } = pizzaApi.useGetAllPizzasQuery(0);
@@ -27,8 +29,8 @@ const Main = ({ navigation }: any) => {
                 }}
             >
                 {isLoading && <Loading />}
-                {isError ? (
-                    <TextError />
+                {isError && !isLoading ? (
+                    <PageError onPress={refetch}/>
                 ) : (
                     pizzas?.pizzas.map((pizza) => (
                         <Card

@@ -4,4 +4,5 @@ export interface IProduct {
     route: {
         params: IPizzas;
     };
+    title: string;
 }

@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import { SelectView, SizeView, TextView } from "./styles";
-import { FC, useState } from "react";
+import { FC, useEffect, useLayoutEffect, useState } from "react";
 import { ISize } from "./interface";
 import Animated, {
     Easing,
@@ -12,8 +12,7 @@ import Animated, {
 const width = Dimensions.get("window").width;
 
 const Size: FC<ISize> = ({ callback, price }) => {
-    const [position, setPosition] = useState(50);
-    const left = useSharedValue(0);
+    const left = useSharedValue((width - 32)/3);
 
     const animatedDefault = useAnimatedStyle(() => ({
         marginLeft: left.value,
@@ -38,6 +37,8 @@ const Size: FC<ISize> = ({ callback, price }) => {
             easing: Easing.inOut(Easing.circle),
         });
     };
+
+
     return (
         <View style={{ minHeight: 35 }}>
             <SizeView>
@@ -45,7 +46,7 @@ const Size: FC<ISize> = ({ callback, price }) => {
                 <TextView
                     onPress={() => {
                         handlePress(0);
-                        callback(200, "Маленькая");
+                        callback(-200, "Маленькая");
                     }}
                 >
                     <Text>Маленькая</Text>
